@@ -1,38 +1,755 @@
-.App {
+/* Reset some default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.navbar {
+  padding: 15px 20px; 
+  background-color: white; 
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+}
+
+.container {
+  display: flex;
+  height: 50px;  
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 25px; 
+}
+
+.nav-link {
+  color: rgb(22, 22, 74);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: color 0.3s, transform 0.3s; 
+  padding: 5px 0;
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: rgb(91, 91, 246);
+  transition: width 0.3s ease-out;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link:hover {
+  color: rgb(91, 91, 246);
+  transform: translateY(-2px); /* Subtle lift on hover */
+}
+.nav-button{
+  background-color: #ffcc00;
+  border-radius: 5px;
+  color: white;
+  width: 100px;
+  font-weight: bold;
+  border-style: none;
+  box-shadow: 0px 3px 0px #ffcc00;
+  padding: 5px;
+  padding-top: 10px;
+  cursor: pointer;
+  transform: translateY(-2px);
+  transition: all 0.2s ease-in-out;
+}
+.nav-button:hover{
+  background-color: rgb(91, 91, 246);
+  box-shadow: 0px 3px 0px rgb(91, 91, 246);
+  transform: translateY(-2px);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Mobile menu button */
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color:black;
+  cursor: pointer;
+  padding: 5px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    width: 200px;
+    text-align: left;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  .nav-menu.active {
+    display: flex;
+    gap: 5px;
+  }
+
+  .nav-menu li {
+    padding: 10px 0;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+
+/* Further adjustments for very small screens */
+@media screen and (max-width: 480px) {
+  .navbar {
+    padding: 10px 15px;
+  }
+
+  .container {
+    height: 45px;
+  }
+
+  .navbar-brand {
+    font-size: 1rem;
+    gap: 5px;
+  }
+
+  .navbar-logo {
+    height: 30px;
+  }
+
+  .menu-toggle {
+    font-size: 1.5rem;
+  }
+
+  .nav-menu {
+    top: 65px;
+    width: 180px;
+  }
+}
+.contactform-container {
+  display: flex;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  justify-content: space-between;
+  padding: 150px 200px;
+/*padding-top: 120px; 
+  padding-right: 200px;
+  padding-bottom: 150px;
+  padding-left: 200px; */
+  color: white;
+  margin-top:2px ;
+}
+
+.contactform-left {
+  margin-top: 150px;
+  max-width: 600px;
+}
+.contact-form {
+  background: rgba(91, 91, 246, 0.2);
+  border: 1px solid #ccc;
+  padding: 30px;
+  backdrop-filter: blur(10px);
+  border-color: white;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.contact-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.contact-form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  background-color: rgb(91, 91, 246);
+  border-radius: 5px;
+  border-color: white;
+  outline: none;
+}
+.contact-form input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+.contact-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #ff5e00;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.realtor-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px;
+  background: #f8fbff;
+  min-height: 100vh;
+}
+
+.left-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.left-content h2 {
+  font-size: 2.5rem;
+  color: #2678d0;
+  font-weight: bold;
+}
+
+.left-content p {
+  margin-top: 20px;
+  color: #444;
+  font-size: 1rem;
+  line-height: 1.5;
+  max-width: 500px;
+}
+
+.right-images {
+  position: relative;
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.big {
+  width: 300px;
+  height: 300px;
+}
+
+.small {
+  width: 220px;
+  height: 220px;
+  position: absolute;
+}
+
+.top-right {
+  top: -80px;
+  right: 90px;
+}
+
+.bottom-right {
+  bottom: -80px;
+  right: 90px;
+}
+.why-container {
+  background: #f8fbff;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.why-title {
+  color: #2678d0;
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.underline {
+  width: 80px;
+  height: 4px;
+  background-color: #2678d0;
+  margin: 0 auto 40px;
+  border-radius: 10px;
+}
+
+.why-features {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.feature-box {
+  max-width: 300px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  transition: 0.3s ease;
+}
+
+.feature-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle {
+  background: #e9f3ff;
+  color: #2678d0;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.feature-box h3 {
+  font-size: 1.2rem;
+  color: #2678d0;
+  margin-bottom: 10px;
+}
+
+.feature-box p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+}
+.gallery-container {
+  padding: 100px 20px;
+  background-color:  #f8fbff;
+  position: relative;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.gallery-grid {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  flex-wrap: wrap;
+  gap: 40px;
+  position: relative;
+}
+
+.gallery-item {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 260px;
+  height: 180px;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.about-container {
+  background-color:#f8fbff;
+  padding: 80px 20px;
+  text-align: center;
+  position: relative;
+}
+
+.about-title {
+  font-size: 2rem;
+  color: #2678d0;
+  font-weight: bold;
+}
+.about-text {
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 auto 40px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.learn-more-btn {
+  padding: 10px 24px;
+  font-size: 0.95rem;
+  background-color: transparent;
+  border: 2px solid #2678d0;
+  color: #2678d0;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.learn-more-btn:hover {
+  background-color: #2678d0;
+  color: white;
+}
+.projects-container {
+  background-color: #f8fbff;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.projects-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2678d0;
+  margin-bottom: 10px;
+}
+
+.projects-subtitle {
+  font-size: 1rem;
+  color: #555;
+  max-width: 600px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+.projects-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.project-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  width: 230px;
+  overflow: hidden;
+  text-align: left;
+  transition: 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.project-card h3 {
+  font-size: 1rem;
+  color: #2678d0;
+  margin: 15px 15px 5px;
+}
+
+.project-card p {
+  font-size: 0.85rem;
+  color: #777;
+  margin: 0 15px 15px;
+}
+
+.project-card button {
+  margin: 0 15px 15px;
+  padding: 8px 16px;
+  background-color: #f26722;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.project-card button:hover {
+  background-color: #d9550f;
+}
+.footer-wrapper {
+  margin-top: 40px;
+  font-family: sans-serif;
+}
+
+/* Banner Section */
+.footer-banner {
+  background-size: cover;
+  background-position: center;
+  padding: 80px 20px;
+  text-align: center;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.banner-content h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+  margin-bottom: 30px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.cta-btn {
+  padding: 12px 30px;
+  background-color: white;
+  border: none;
+  border-radius: 6px;
+  color: #333;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.cta-btn:hover {
+  background-color: #f1f1f1;
+}
+
+/* Middle Navigation and Subscribe Section */
+.footer-mid {
+  background-color: #2678d0;
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+}
+
+.footer-nav {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-nav li {
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.footer-subscribe {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.footer-subscribe input {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: none;
+  width: 200px;
+}
+
+.footer-subscribe button {
+  padding: 8px 16px;
+  background-color: white;
+  color: #2678d0;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.footer-subscribe button:hover {
+  background-color: #f1f1f1;
+}
+.footer-bottom {
+  background-color: #1a1a1a;
+  color: #fff;
+  padding: 25px 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-branding {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+}
+
+.social-icons {
+  display: flex;
+  gap: 16px;
+  color: white;
+  font-size: 1.1rem;
+}
+
+.social-icons svg {
+  cursor: pointer;
+  transition: color 0.3s;
+  background-color: white;
+}
+
+.social-icons svg:hover {
+  color: #f26722;
+}
+/* ========== Responsive Design Enhancements ========== */
+
+/* Medium Devices (Tablets and below) */
+@media screen and (max-width: 768px) {
+  .container,
+  .footer-mid,
+  .footer-bottom,
+  .realtor-container,
+  .contactform-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px;
+    text-align: center;
   }
-  to {
-    transform: rotate(360deg);
+
+  .contactform-left {
+    margin-top: 40px;
+  }
+
+  .right-images {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .small {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    right: auto;
+    margin-top: 20px;
+  }
+
+  .why-features,
+  .projects-grid,
+  .gallery-grid {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .feature-box,
+  .project-card,
+  .gallery-item {
+    width: 90%;
+  }
+
+  .footer-subscribe {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  .footer-subscribe input,
+  .footer-subscribe button {
+    width: 100%;
+  }
+  .about-text,
+  .projects-subtitle {
+    max-width: 90%;
+  }
+
+  .circle.big {
+    width: 220px;
+    height: 220px;
+  }
+
+  .circle.small {
+    width: 140px;
+    height: 140px;
+  }
+
+  .left-content p {
+    max-width: 100%;
+  }
+
+  .footer-nav {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .footer-branding {
+    justify-content: center;
   }
 }
+
+/* Small Devices (Phones and small screens) */
+@media screen and (max-width: 480px) {
+  .left-content h2,
+  .about-title,
+  .why-title,
+  .projects-title {
+    font-size: 1.5rem;
+  }
+
+  .about-text,
+  .projects-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+  }
+
+  .footer-bottom {
+    gap: 20px;
+  }
+
+  .footer-subscribe input {
+    width: 100%;
+  }
+
+  .footer-subscribe button {
+    width: 100%;
+  }
+
+  .cta-btn {
+    width: 90%;
+  }
+
+  .project-card {
+    width: 100%;
+  }
+
+  .gallery-item {
+    width: 100%;
+    height: 200px;
+  }
+
+  .contactform-container {
+    padding: 40px 20px;
+  }
+
+  .footer-banner {
+    padding: 40px 20px;
+  }
+
+  .banner-content h2 {
+    font-size: 1.3rem;
+  }
+
+  .realtor-container {
+    padding: 20px 10px;
+  }
+
+  .contact-form {
+    padding: 20px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
